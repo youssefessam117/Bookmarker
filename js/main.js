@@ -16,17 +16,22 @@ function addData() {
     name: bookmarkName.value,
     url: bookmarkurl.value,
   };
-  if (document.getElementById("addBtn").innerHTML == "Submit") {
-    bookmarkcontainer.push(bookmark);
+  if (bookmark.name == "" && bookmark.url == "") {
+    document.getElementById("alert").classList.replace("d-none", "d-block");
   } else {
-    var found = 0;
-    bookmarkcontainer.splice(mainIndex, 1, bookmark);
-    document.getElementById("addBtn").innerHTML = "Submit";
-  }
+    if (document.getElementById("addBtn").innerHTML == "Submit") {
+      bookmarkcontainer.push(bookmark);
+    } else {
+      var found = 0;
+      bookmarkcontainer.splice(mainIndex, 1, bookmark);
+      document.getElementById("addBtn").innerHTML = "Submit";
+    }
 
-  localStorage.setItem("youssef", JSON.stringify(bookmarkcontainer));
-  displayData(bookmarkcontainer);
-  clearForm();
+    localStorage.setItem("youssef", JSON.stringify(bookmarkcontainer));
+    displayData(bookmarkcontainer);
+    clearForm();
+    document.getElementById("alert").classList.replace("d-block", "d-none");
+  }
 }
 
 function displayData(index) {
